@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="action_pro_forma_wiz_form" model="ir.ui.view">
+        <field name="name">Credit Note</field>
+        <field name="model">pro.forma.wiz</field>
+        <field name="arch" type="xml">
+            <form string="Credit Note">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="pro_forma_id" required="1" invisible="1"/>
+                            <field name="pro_forma_id" required="1"/>
+                            <field name="credit_note_date" required="1"/>
+                            <field name="reason" required="1"/>
+                        </group>
+                        <group>
+
+                        </group>
+                    </group>
+                    <footer>
+                    <button name="post" string="Post" type="object" class="oe_highlight"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                    </footer>
+
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_pro_forma_wiz_menu" model="ir.actions.act_window">
+        <field name="name">Credit Note</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">pro.forma.wiz</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="action_pro_forma_wiz_form"/>
+        <field name="target">new</field>
+        <field name="binding_model_id" ref="enz_phase_two_pro_froma.model_pro_forma_wiz"/>
+        <field name="binding_type">report</field>
+    </record>
+</odoo>

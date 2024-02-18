@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="res_company_inheritinherit" model="ir.ui.view">
+        <field name="name">res.company.form</field>
+        <field name="model">res.company</field>
+        <field name="inherit_id" ref="natcom_phase_two_date_fix_time_remove.res_company_inherit"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='seconds']" position="after">
+                <field name="advance_product_id"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="pro_forma_invoice_form_inherit" model="ir.ui.view">
+        <field name="name">pro.forma.invoice.form</field>
+        <field name="model">pro.forma.invoice</field>
+        <field name="inherit_id" ref="pro_forma_invoice.pro_forma_invoice_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='currency_id']" position="after">
+                <field name="invoice_id"/>
+                <field name="credit_invoice_id"/>
+                <field name="credit_invoice_date"/>
+                <field name="credit_note_reason"/>
+<!--                <field name="invoiced"/>-->
+<!--                <field name="credit_invoiced"/>-->
+            </xpath>
+            <xpath expr="//button[@name='pro_forma_done']" position="after">
+<!--                    <button name="convert_to_invoice" type="object" class="oe_highlight" string="Invoiced"/>-->
+                    <button name="convert_to_invoice" type="object" class="oe_highlight" string="Convert To Invoice" attrs="{'invisible':[('state','!=','done')]}"/>
+                    <button name="convert_to_invoice_new" type="object" class="oe_highlight" string="Send Invoice" attrs="{'invisible':[('state','!=','invoiced')]}"/>
+                    <button name="%(enz_phase_two_pro_froma.action_pro_forma_wiz_menu)d" context="{'default_pro_forma_id': id}" type="action" class="oe_highlight" string="Convert To Credit Note" attrs="{'invisible':[('state','!=','invoiced_send')]}"/>
+                    <button name="convert_to_credit_note_new" type="object" class="oe_highlight" string="Send Credit Note" attrs="{'invisible':[('state','!=','cancel')]}"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>
